@@ -296,6 +296,11 @@ I made the changes required to get the pass working correctly. My mentor also to
 the tests for the pass because they defined a lot of attributes which were not relevant for testing
 the pass. After that, my pull request got merged and ticket closed.
 
+My manager asked me about my outdated pass detection tool, so I informed him that I still haven't
+managed to get the list of testing models from the CI. He scheduled an online call with me and one
+person responsible for the CI who explained me how to connect to our AWS S3 bucket and which models
+to download from here. However, that required me to first ask for permissions to access the bucket.
+
 There was also one simple ticket, which required changing the default settings of the repeated
 blocks compilation. The change was passing weights as arguments to repeated blocks, rather than
 embedding them as constants inside the block. The original behaviour produced incorrect programs
@@ -310,7 +315,14 @@ run 3x faster.
 
 == 27 April to 1 May
 
-I got both tickets from the last week merged into the upstream.
+I got both tickets from the last week merged into the upstream. Then I finally tested my outdated
+pass detection tool on around 500 models on the Intel Panther Lake model. When I got the results,
+I couldn't believe my eyes. When I sent my results to my mentor and manager, they couldn't believe
+their eyes either. Surely, it's not possible that 92 out of 484 passes are useless?
+
+Having such scandalous results at least gave me something to talk about during the internship
+presentation for our Trinity supervisor on Friday of this week. Our supervisor told me and my fellow
+intern Ayushmaan that it looks like our internship is going well.
 
 == 4 April to 8 May
 
