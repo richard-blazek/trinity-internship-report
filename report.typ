@@ -271,6 +271,7 @@ Intel after graduation. I replied that I think my internship is going well and I
 work there.
 
 == 13 April to 17 April
+
 My mentor introduced me to another problem the team was working on which was compiling repeating
 blocks. Many machine learning models (such as LLaMa) consist of blocks of multiple operations that
 are repeated multiple times (e.g. Convolution, Clamp, BatchNorm). Currently, the compiler had to
@@ -290,6 +291,7 @@ I obtained the reference input and output for the pass from which I created a te
 had to modify the pass to pass (pun not intended) the test.
 
 == 20 April to 24 April
+
 I made the changes required to get the pass working correctly. My mentor also told me to refactor
 the tests for the pass because they defined a lot of attributes which were not relevant for testing
 the pass. After that, my pull request got merged and ticket closed.
@@ -301,11 +303,20 @@ if each repetition of the blocks used different weights because the block had th
 the first repetition embedded inside. In this task, I simply toggled the default value of one flag
 in the settings and then changed the tests to reflect the new behavior.
 
+Another ticket I started working on was lazy evaluation for one expensive operation that was
+slowing down our tests. Every test was evaluating that operation even though most tests didn't need
+its result. Lazy evaluation ensured we don't evaluate it unless we need it, making our test suite
+run 3x faster.
+
 == 27 April to 1 May
+
+I got both tickets from the last week merged into the upstream.
 
 == 4 April to 8 May
 
 == 11 April to 15 May
+
+== 18 April to 22 May
 
 #pagebreak()
 
