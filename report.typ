@@ -323,9 +323,14 @@ possible that 92 out of 484 passes are useless?
 
 Having such groundbreaking results at least gave me something to talk about during the internship
 presentation for our Trinity supervisor on Friday of this week. Our supervisor told me and my fellow
-intern Ayushmaan that it looks like our internship is going well and well it was going.
+intern Ayushmaan that it looks like our internship is going well.
 
 == 4 April to 8 May
+
+This week I got back to repeating blocks. Our compiler has a pass for detecting repeating blocks.
+After identifying them, it extracts them into subroutines, which can be reused, to make the model
+smaller and faster to compile. The result is a main program which runs on the CPU and is responsible
+for calling the subroutines on the NPU.
 
 == 11 April to 15 May
 
