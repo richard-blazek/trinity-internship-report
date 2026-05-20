@@ -317,12 +317,13 @@ run 3x faster.
 
 I got both tickets from the last week merged into the upstream. Then I finally tested my outdated
 pass detection tool on around 500 models on the Intel Panther Lake model. When I got the results,
-I couldn't believe my eyes. When I sent my results to my mentor and manager, they couldn't believe
-their eyes either. Surely, it's not possible that 92 out of 484 passes are useless?
+I couldn't believe my eyes. I sent my results to my mentor who posted them in a Microsoft Teams
+group chat for compiler developers and they couldn't believe their eyes either. Surely, it's not
+possible that 92 out of 484 passes are useless?
 
-Having such scandalous results at least gave me something to talk about during the internship
+Having such groundbreaking results at least gave me something to talk about during the internship
 presentation for our Trinity supervisor on Friday of this week. Our supervisor told me and my fellow
-intern Ayushmaan that it looks like our internship is going well.
+intern Ayushmaan that it looks like our internship is going well and well it was going.
 
 == 4 April to 8 May
 
