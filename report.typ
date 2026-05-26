@@ -325,16 +325,23 @@ Having such groundbreaking results at least gave me something to talk about duri
 presentation for our Trinity supervisor on Friday of this week. Our supervisor told me and my fellow
 intern Ayushmaan that it looks like our internship is going well.
 
-== 4 April to 8 May
+== 4 May to 8 May
 
 This week I got back to repeating blocks. Our compiler has a pass for detecting repeating blocks.
 After identifying them, it extracts them into subroutines, which can be reused, to make the model
 smaller and faster to compile. The result is a main program which runs on the CPU and is responsible
 for calling the subroutines on the NPU.
 
-== 11 April to 15 May
+The problem is that the CPU should only call the subroutines, and not execute NPU instructions.
+Because of that, the compiler should not leave any NPU instructions in the main program, it should
+extract them all into subroutines. The pass used to be extracting only repeating blocks, so my task
+was to add extra code to find leftover NPU instructions and put them into separate subroutines.
 
-== 18 April to 22 May
+== 11 May to 15 May
+
+== 18 May to 22 May
+
+== 25 May to 29 May
 
 #pagebreak()
 
