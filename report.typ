@@ -104,7 +104,7 @@ detecting which compiler passes are useless and waste compilation time.
 
 = Reflective Diary
 
-== 12 to 16 January 2026
+== 12 to 16 January
 
 On Monday, all of us interns spent the day attending all sorts of orientation sessions. The instructors
 gave us presentations on health, safety, company policies and intellectual property. For the rest of the
@@ -114,10 +114,10 @@ I also had to request several permissions in the information system and wait bef
 
 By Friday, all my tasks had been finished, and I started working on my first task. It was a simple JIRA ticket
 assigned to me by my mentor, which only required deleting one old unused class, submitting a pull request and
-getting it successfully merged into the upstream. I opened my first pull request and finished my first week
-at Intel.
+getting it successfully merged into the upstream repository. I opened my first pull request and finished my first
+week at Intel.
 
-== 19 to 23 January 2026
+== 19 to 23 January
 
 I found out that the pull request I opened was not yet ready to be merged and there were more steps required
 between writing the code and getting it merged into the upstream. I had to learn how to run CI (continuous
@@ -126,32 +126,31 @@ history clean. I also had to ask my mentor and another colleague to review and a
 end of the week, my first task was done, and my changes were ready to be automatically merged into the upstream.
 
 Then my mentor explained to me what my second task was going to be about. The second task involved
-refactoring the clamp fusing logic in the NPU compiler. Clamp fusing means merging the clamping operation
+refactoring the clamp-fusing logic in the NPU compiler. Clamp fusing means merging the clamping operation
 with the previous operation to improve the performance of the generated code. My job was to move this logic
 from a lower level of the compiler to a more abstract layer.
 
 After work on Thursday, we had a dinner with my colleagues from the compiler team, including some from
 Romania who were visiting here.
 
-== 26 to 30 January 2026
+== 26 to 30 January
 
 I started working on the task I was assigned last week. When I ran the tests, I encountered an issue
-with old clamp fusing tests that suddenly stopped working. I did not understand the problem, so
-I reverted my changes and tried to reimplement the logic again. This time, I was
-very careful not to touch the previous code that the old tests were testing, just adding my new code as
-a parallel implementation. As a result, I ended up with two parallel implementations of clamp fusing,
-the original one and my new one.
+with old clamp-fusing tests that suddenly stopped working. I did not understand the problem, so I
+reverted my changes and tried to reimplement the logic again. This time, I was very careful not to
+touch the existing code that the old tests covered, just adding my new code as a parallel implementation.
+As a result, I ended up with two parallel implementations of clamp fusing, the original one and my new one.
 
-To write the tests for my implementation, I looked at the old clamp fusing tests. There I noticed that
+To write the tests for my implementation, I looked at the old clamp-fusing tests. There I noticed that
 some of the test cases do not make any sense, yet the tests always passed. I asked my mentor about that,
 and he checked the Git history of the tests. This way we discovered that the tests were correct when created,
 but later some of the test cases were changed in a way that looked clearly wrong. Apparently, someone broke
 the code and decided to change the failing tests instead of fixing their code. This episode cost me two days,
-but it taught me why we ought to do test-driven development instead of writing tests to retrofit the code.
+but it taught me why we ought to do test-driven development instead of retrofitting tests to existing code.
 
 On Friday, I submitted the PRs for my ticket and started the CI checks.
 
-== 2 to 6 February 2026
+== 2 to 6 February
 
 Over the weekend, the CI checks have finished and some of them failed. I spent the week trying to fix the
 issues, which progressed slowly because the full CI takes around 24 hours to run, depending on how many
@@ -159,11 +158,11 @@ other checks are there in the queue. Therefore, anytime I tried to fix something
 day to see if the error was solved. Also, my mentor was away this week, so I was not always sure what to do.
 
 I managed to resolve some of the errors which were caused by the bugs in my code. However, some of the CI
-checks behaved non-deterministically –- even if there was no issue in the code, they failed with some
+checks behaved non-deterministically — even if there was no issue in the code, they failed with some
 non-zero probability. I requested additional permissions which allowed me to restart a failed check because
 some of them simply succeeded on a second or a third try.
 
-== 9 to 13 February 2026
+== 9 to 13 February
 
 I managed to get another pull request merged, but the task I was working on required merging two further pull
 requests with more changes to be merged. I also received a new task to work on. My manager also explained the
@@ -177,7 +176,7 @@ codebase, each responsible for checking one option. My job was to replace all th
 list of all disabled passes and one class responsible for only executing passes which checks if a pass
 should be disabled before execution.
 
-== 16 to 20 February 2026
+== 16 to 20 February
 
 I had two individual meetings with senior programmers explaining the compiler structure to me. The first one
 was describing the lower layers of the compiler and some optimisation techniques she was implementing.
@@ -221,13 +220,13 @@ default, so that I wouldn’t need to look for them manually. It found around fi
 were false positives because some of these options were not related to pass disabling. So I still had to
 check for each option if it should be removed and adjust the code that used the option.
 
-I also figured out that I had to make another change to the code before we could close the clamp fusing story
+I also figured out that I had to make another change to the code before we could close the clamp-fusing story
 ticket. Thus, I had to create yet another pull request. It’s a never-ending story. On the other hand, next
 week I should finish both tasks and move on to something completely different.
 
 == 16 to 20 March
 
-At last, I merged the last pull request for the clamp fusing ticket, so I could close the ticket in JIRA and
+At last, I merged the last pull request for the clamp-fusing ticket, so I could close the ticket in JIRA and
 move on. The pass disabling task still required some more changes from code reviewers and also did not pass
 the CI checks, so I did not get it merged by Friday. The Tuesday of this week was the St. Patrick’s Day, so
 we had a bank holiday on that day.
@@ -262,8 +261,8 @@ and he told me that he will prepare the list and send it to me.
 == 6 April to 10 April
 
 The colleague who promised to send me the list of models used for testing did not send me anything,
-so I reminded him about that and he told me it's in progress. I was starting to think that if I didn't
-bother asking him and simply ran the analysis on all models instead, it would have been finished by
+so I reminded him about that and he told me it's in progress. I was starting to think that if I hadn't
+bothered asking him and simply ran the analysis on all models instead, it would have been finished by
 now. In the meanwhile, I wrote documentation for the new pass disabling mechanism and merged it into
 the repository.
 
@@ -320,8 +319,8 @@ run 3x faster.
 I got both tickets from the last week merged into the upstream. Then I finally tested my outdated
 pass detection tool on around 500 models on the Intel Panther Lake model. When I got the results,
 I couldn't believe my eyes. I sent my results to my mentor who posted them in a Microsoft Teams
-group chat for compiler developers and they couldn't believe their eyes either. Surely, it's not
-possible that 92 out of 484 passes are useless?
+group chat for compiler developers and they couldn't believe their eyes either. Surely, it was not
+possible that 92 out of 484 passes were useless?
 
 Having such groundbreaking results at least gave me something to talk about during the internship
 presentation for our Trinity supervisor on Friday of this week. Our supervisor told me and my fellow
@@ -330,7 +329,7 @@ intern Ayushmaan that it looks like our internship is going well.
 == 4 May to 8 May
 
 This week I started working on integrating the outdated pass detection tool into the compiler and
-merge it into the upstream so that it could be run automatically in the CI.
+merging it into the upstream so that it could be run automatically in the CI.
 
 Besides that, I got back to repeating blocks. Our compiler has a pass for detecting repeating blocks.
 After identifying them, it extracts them into subroutines, which can be reused, to make the model
@@ -347,7 +346,7 @@ was to add extra code to find leftover NPU instructions and put them into separa
 I modified the pass extracting repeating blocks into subroutines for the task I started last week.
 I added some extra code that went through the main program, collected remaining NPU instructions and
 created subroutines for them so that there were no NPU-related operations left in the main program.
-My mentor told me that we should make the code more generic by moving this new code into separate
+My mentor told me that we should make the code more generic by moving this new code into a separate
 class before we close this task.
 
 I implemented the integration of the outdated pass detection tool into the compiler. I ran the analysis
