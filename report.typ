@@ -1,7 +1,7 @@
-#set document(title: "Midpoint Report - Richard Blazek", author: "Richard Blazek")
+#set document(title: "Final Report - Richard Blazek", author: "Richard Blazek")
 #set par(justify: true)
 
-= Midpoint Report, MCS Internship
+= Final Report, MCS Internship
 
 Name: Richard Blazek\
 Student Number: 22337668\
@@ -342,7 +342,7 @@ was to add extra code to find leftover NPU instructions and put them into separa
 
 == 11 May to 15 May
 
-I implemented the last week's task, modifying the pass extracting repeating blocks into subroutines.
+I modified the pass extracting repeating blocks into subroutines for the task I started last week.
 I added some extra code that went through the main program, collected remaining NPU instructions and
 created subroutines for them so that there were no NPU-related operations left in the main program.
 My mentor told me that we should make the code more generic by moving this new code into separate
@@ -356,8 +356,17 @@ these cases and 180 passes (about a third) were used less than one percent of th
 == 18 May to 22 May
 
 I wanted to merge my PR that integrated the outdated pass detection into the compiler. However, one
-of the senior programmers doing code review said it conflicts with another task they are working on.
-We scheduled a call to figure it out.
+of the senior programmers doing code review said it conflicts with a task another programmer was
+working on. We scheduled a call to figure it out. The issue was there was an MLIR instrumentation to
+set a callback that is run whenever a pass is executed which both I and the other programmer used.
+Since there could only be one such callback, we couldn't both merge our PRs without conflict.
+
+Fortunately, there is a class in MLIR for this purpose that allows registering multiple observers
+to be called before and after a pass is executed. However, this class was not memory-safe, worked with
+plain pointers and relied on its user to manage their ownership manually. Therefore, the first step was
+implementing a memory-safe wrapper around this class that manages memory automatically which I promptly
+did and my pull request was approved without any delay. Next change that was required modifying the old
+pass disabling logic from my past task to work with this new class.
 
 == 25 May to 29 May
 
