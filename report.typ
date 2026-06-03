@@ -355,7 +355,13 @@ these cases and 180 passes (about a third) were used less than one percent of th
 
 == 18 May to 22 May
 
+I wanted to merge my PR that integrated the outdated pass detection into the compiler. However, one
+of the senior programmers doing code review said it conflicts with another task they are working on.
+We scheduled a call to figure it out.
+
 == 25 May to 29 May
+
+== 2 June to 5 June
 
 #pagebreak()
 
