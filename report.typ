@@ -327,7 +327,10 @@ intern Ayushmaan that it looks like our internship is going well.
 
 == 4 May to 8 May
 
-This week I got back to repeating blocks. Our compiler has a pass for detecting repeating blocks.
+This week I started working on integrating the outdated pass detection tool into the compiler and
+merge it into the upstream so that it could be run automatically in the CI.
+
+Besides that, I got back to repeating blocks. Our compiler has a pass for detecting repeating blocks.
 After identifying them, it extracts them into subroutines, which can be reused, to make the model
 smaller and faster to compile. The result is a main program which runs on the CPU and is responsible
 for calling the subroutines on the NPU.
@@ -338,6 +341,17 @@ extract them all into subroutines. The pass used to be extracting only repeating
 was to add extra code to find leftover NPU instructions and put them into separate subroutines.
 
 == 11 May to 15 May
+
+I implemented the last week's task, modifying the pass extracting repeating blocks into subroutines.
+I added some extra code that went through the main program, collected remaining NPU instructions and
+created subroutines for them so that there were no NPU-related operations left in the main program.
+My mentor told me that we should make the code more generic by moving this new code into separate
+class before we close this task.
+
+I implemented the integration of the outdated pass detection tool into the compiler. I ran the analysis
+manually in the CI to get results for more models than the 500 I used for testing before and other
+architectures than just Panther Lake. Still, the result was that 62 passes are never used for any of
+these cases and 180 passes (about a third) were used less than one percent of the time.
 
 == 18 May to 22 May
 
