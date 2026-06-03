@@ -8,7 +8,7 @@ Student Number: 22337668\
 Degree: Master in Computer Science\
 Company Name: Intel Ireland\
 Supervisor: Gareth Young\
-5th April 2026
+29th June 2026
 
 = Declaration
 
@@ -17,7 +17,7 @@ been submitted as an exercise for a degree at this or any other university.
 
 Richard Blazek\
 22337668\
-13th April 2026
+29th June 2026
 
 #pagebreak()
 
@@ -258,7 +258,7 @@ compile. Then he explained to me that we definitely are not going to wait for 11
 and I should ask a colleague responsible for the CI which models are important for testing. I asked him
 and he told me that he will prepare the list and send it to me.
 
-== 6 April to 10 April
+== 6 to 10 April
 
 The colleague who promised to send me the list of models used for testing did not send me anything,
 so I reminded him about that and he told me it's in progress. I was starting to think that if I hadn't
@@ -270,7 +270,7 @@ On Thursday, my manager asked me how my internship was going and whether I would
 Intel after graduation. I replied that I think my internship is going well and I would be happy to
 work there.
 
-== 13 April to 17 April
+== 13 to 17 April
 
 My mentor introduced me to another problem the team was working on which was compiling repeating
 blocks. Many machine learning models (such as LLaMa) consist of blocks of multiple operations that
@@ -290,7 +290,7 @@ other changes and was not considered "pretty". Nevertheless, I could compile a s
 I obtained the reference input and output for the pass from which I created a test. Now I only
 had to modify the pass to pass (pun not intended) the test.
 
-== 20 April to 24 April
+== 20 to 24 April
 
 I made the changes required to get the pass working correctly. My mentor also told me to refactor
 the tests for the pass because they defined a lot of attributes which were not relevant for testing
@@ -326,7 +326,7 @@ Having such groundbreaking results at least gave me something to talk about duri
 presentation for our Trinity supervisor on Friday of this week. Our supervisor told me and my fellow
 intern Ayushmaan that it looks like our internship is going well.
 
-== 4 May to 8 May
+== 4 to 8 May
 
 This week I started working on integrating the outdated pass detection tool into the compiler and
 merging it into the upstream so that it could be run automatically in the CI.
@@ -341,7 +341,7 @@ Because of that, the compiler should not leave any NPU instructions in the main 
 extract them all into subroutines. The pass used to be extracting only repeating blocks, so my task
 was to add extra code to find leftover NPU instructions and put them into separate subroutines.
 
-== 11 May to 15 May
+== 11 to 15 May
 
 I modified the pass extracting repeating blocks into subroutines for the task I started last week.
 I added some extra code that went through the main program, collected remaining NPU instructions and
@@ -354,7 +354,7 @@ manually in the CI to get results for more models than the 500 I used for testin
 architectures than just Panther Lake. Still, the result was that 62 passes are never used for any of
 these cases and 180 passes (about a third) were used less than one percent of the time.
 
-== 18 May to 22 May
+== 18 to 22 May
 
 I wanted to merge my PR that integrated the outdated pass detection into the compiler. However, one
 of the senior programmers doing code review said it conflicts with a task another programmer was
@@ -369,9 +369,9 @@ implementing a memory-safe wrapper around this class that manages memory automat
 did and my pull request was approved without any delay. The next required change was modifying the old
 pass-disabling logic from my earlier task to work with this new class.
 
-== 25 May to 29 May
+== 25 to 29 May
 
-== 2 June to 5 June
+== 2 to 5 June
 
 #pagebreak()
 
