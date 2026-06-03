@@ -41,8 +41,8 @@ following them so that I can be useful as a member of the team.
   code reviews, and maintainers merge my changes into the upstream. I know how to execute tests and
   write my own tests to check that my code functions as intended. I track my progress on tasks using
   JIRA tickets.
-- *Measurable:* I have had at least two pull requests merged into the upstream. I have run CI
-  (continuous integration) checks. I have closed a JIRA ticket.
+- *Measurable:* I have had at least two pull requests integrated upstream. I have run CI (continuous
+  integration) checks. I have closed a JIRA ticket.
 - *Achievable:* All the instructions are described in our documentation. If something is not clear to me,
   I can ask any of my colleagues to help me.
 - *Relevant:* I need to learn and follow the practices of the company I work at.
@@ -52,10 +52,9 @@ following them so that I can be useful as a member of the team.
 == Understand the Intel NPU compiler architecture
 
 The Intel NPU compiler is a multi-pass compiler built using the MLIR framework. This allows the team to
-work with different dialects of the IR (intermediate representation) to represent the model at
-different layers, as the compilation goes from a machine learning model to an ELF binary. As a new
-intern on the compiler team, I need to understand this compiler architecture in order to know what I am
-even doing.
+work with different dialects of the IR (intermediate representation) to represent the model at different
+layers, as the compilation goes from a machine learning model to an ELF binary. As a new intern on the
+compiler team, I need to understand this compiler architecture to know what I am even doing.
 
 - *Specific:* I understand the MLIR framework and the IR dialects we use in different layers of our
   compiler. I am familiar with some of the passes and optimisations in our compiler.
@@ -79,7 +78,7 @@ familiar with the codebase before moving on to larger tasks.
   merged into the upstream.
 - *Achievable:* These refactoring tasks are not technically difficult. If something is not entirely
   clear, I can ask my mentor or other team members.
-- *Relevant:* Improving code quality makes maintenance easier and it also helps me get familiar with the
+- *Relevant:* Improving code quality makes maintenance easier and it helps me get familiar with the
   codebase.
 - *Time-bound:* By the time of the midpoint report, these tickets should be done.
 
@@ -91,13 +90,12 @@ compiled models. I will work on some of the related tasks, the first of which is
 an analyser for detecting which compiler passes are useless and waste compilation time.
 
 - *Specific:* I will complete the analyser for detecting useless compiler passes and add it to our CI to
-  have it scheduled automatically. I will also work on other refactoring tickets my mentor assigns to
-  me.
+  have it scheduled automatically. I will work on other refactoring tickets my mentor assigns to me.
 - *Measurable:* I have developed the analysis tool for detecting outdated compiler passes. Furthermore,
   I have merged a performance improvement pull request resulting in a quantifiable percentage reduction
   in the compilation time for the testing models.
 - *Achievable:* Earlier tasks give me an understanding of the compiler. After completing them, I should
-  be able to go on to these more challenging problems. And I can still rely on existing documentation
+  be able to advance to these more challenging problems. And I can still rely on existing documentation
   and help from my mentor and team members.
 - *Relevant:* Improving performance makes the compiler more useful for Intel's customers and it is an
   interesting technical problem for me.
@@ -114,21 +112,20 @@ On Monday, all of us interns spent the day attending all sorts of orientation se
 presented on health, safety, company policies and intellectual property. For the rest of the week, we
 were occupied by onboarding tasks such as obtaining the Intel employee badge, meeting my manager and
 team colleagues, and setting up my laptop and virtual machine. Before I could start working on the code,
-I also had to request several permissions in the information system and wait to receive them.
+I had to request several permissions in the information system and wait to receive them.
 
 By Friday, I had finished all my onboarding tasks and started working on my first real task. It was a
 simple JIRA ticket assigned to me by my mentor, which only required deleting one old unused class,
-submitting a pull request and getting it successfully merged into the upstream repository. I opened my
-first pull request and finished my first week at Intel.
+submitting a pull request and getting it successfully merged into develop (the main branch in our
+repository). I opened my first pull request and finished my first week at Intel.
 
 == 19 to 23 January
 
 I found out that the pull request I had opened was not yet ready, and that more steps were required
-between writing the code and integrating it into the upstream. I had to learn how to run CI
-(continuous integration) tests to verify that my code could be safely merged and how to use rebasing to
-keep the Git history clean. I also had to ask my mentor and another colleague to review and approve my
-changes. By the end of the week, my first task was done, and my changes were ready to be automatically
-merged into the upstream.
+between writing the code and integrating it upstream. I had to learn how to run CI (continuous
+integration) tests to verify that my code could be safely merged and how to use rebasing to keep
+the Git history clean. I had to ask my mentor and another colleague to review and approve my changes.
+By the end of the week, my first task was done, and my changes were ready to be automatically merged.
 
 Then my mentor explained to me what my second task was going to be about. The second task involved
 refactoring the clamp-fusing logic in the NPU compiler. Clamp fusing means merging the clamping
@@ -155,26 +152,26 @@ Apparently, someone broke the code and decided to change the failing tests inste
 This episode cost me two days, but it taught me why we ought to do test-driven development instead of
 retrofitting tests to existing code.
 
-On Friday, I submitted the pull requests for my ticket and started the CI checks.
+On Friday, I submitted the pull requests for my ticket and started the CI pipeline.
 
 == 2 to 6 February
 
-Over the weekend, the CI checks finished, and some of them failed. I spent the week trying to fix the
-issues, which progressed slowly because the full CI took around 24 hours to run, depending on how many
-other checks were in the queue. Therefore, any time I tried to fix something, I had to wait an entire
-day to see if the error was solved. Also, my mentor was away this week, so I was not always sure what
-to do.
+Over the weekend, the CI finished, and some of the checks failed. I spent the week trying to fix the
+issues, which progressed slowly because running the full pipeline took around 24 hours to run, depending
+on how many other checks were in the queue. Therefore, any time I tried to fix something, I had to wait
+an entire day to see if the error was solved. Also, my mentor was away this week, so I was not always
+sure what to do.
 
-I managed to resolve some of the errors which were caused by the bugs in my code. However, some of the
-CI checks behaved non-deterministically — even if there was no issue in the code, they failed with some
-non-zero probability. I requested additional permissions which allowed me to restart a failed check
-because some of them simply succeeded on a second or a third try.
+I resolved some of the errors which were caused by the bugs in my code. However, some tests in the CI
+behaved non-deterministically — even if there was no issue in the code, they failed with some non-zero
+probability. I requested additional permissions which allowed me to restart a failed check because some
+of them simply succeeded on a second or a third try.
 
 == 9 to 13 February
 
-I managed to get another pull request merged, but the task I was working on required merging two further
-pull requests with more changes. I also received a new task to work on. My manager also explained the
-overall design of the NPU and the compiler, and arranged one-on-one meetings with the senior
+I got another pull request successfully merged, but the task I was working on required merging two further
+pull requests with more changes. On top of that, I received a new task to work on. My manager gave me an
+overview of the design of the NPU and the compiler, and arranged one-on-one meetings with the senior
 programmers, so that each could explain their part and I could understand the whole architecture.
 
 The new task I received was refactoring the mechanism for disabling compiler passes. There were too many
@@ -190,8 +187,8 @@ one was describing the lower layers of the compiler and some optimisation techni
 implementing. The second one (my mentor) explained to me the more abstract layers of the compiler and
 the design choices.
 
-I managed to get a second pull request from my first task merged, and I was simultaneously working on my
-second task (because I had time waiting for CI checks on the first task). I created the command-line
+I succeeded in getting a second pull request from my first task merged, and I was simultaneously working
+on my second task (because I had time waiting for CI checks on the first task). I created the command-line
 option and the class with a unit test. Then I started the excruciating process of crawling through the
 codebase in search of options to remove. Did I mention the options were scattered all around? Another
 issue was that it was not even clear which options should be removed and which ones were actually
@@ -201,11 +198,11 @@ necessary, and the program would break without them.
 
 Another senior programmer explained his part of the compiler to me, the scheduler.
 
-I also had a meeting with my mentor and another programmer about my second ticket (compiler pass
-disabling). They told me to split the ticket into three smaller pull requests rather than implementing
-it all at once, so that they could review each pull request. I found out that there was a difference
-between an epic and a story in Scrum. The pass-disabling ticket was an epic, but each pull request had
-to be linked to a story, so I created three JIRA stories for the three pull requests I had to make.
+I discussed my second ticket (compiler pass disabling) with my mentor and another programmer. We agreed
+I should split the ticket into three smaller pull requests rather than implementing it all at once,
+so that they could review each pull request. I found out that there was a difference between an epic
+and a story in Scrum. The pass-disabling ticket was an epic, but each pull request had to be linked to
+a story, so I created three JIRA stories for the three pull requests I had to make.
 
 The first story was implementing a utility class responsible for conditional pass execution, checking if
 a pass is disabled and executing it only if it is not. The second one was adding the pass-disabling
@@ -223,21 +220,22 @@ this ticket, so that I can be done with this ticket soon.
 
 This week, I implemented the second story of the pass-disabling epic and got it merged. In order to
 finally mark this epic as closed, I needed to create one last pull request to remove the old
-pass-disabling options. I wrote a Python script that crawled through the codebase and found the options
+pass-disabling options. I wrote a Python script that scanned the source tree and found the options
 that were always enabled by default, so that I wouldn’t need to look for them manually. It found around
 fifty of them, but some of them were false positives because some of these options were not related to
 pass disabling. So I still had to check for each option if it should be removed and adjust the code
 that used the option.
 
-I also figured out that I had to make another change to the code before we could close the clamp-fusing
-story ticket. Thus, I had to create yet another pull request. It was a never-ending story. On the other
-hand, next week I should finish both tasks and move on to something completely different.
+Of course, I figured out that I had to make another change to the code before we could close the
+clamp-fusing story ticket. Thus, I had to create yet another pull request. This story is a never-ending
+story. On the other hand, next week I should finish both tasks and progress to something completely
+different.
 
 == 16 to 20 March
 
 At last, I merged the last pull request for the clamp-fusing ticket, so I could close the ticket in JIRA
-and move on. The pass-disabling task still required some more changes from code reviewers and also did
-not pass the CI checks, so I did not get it merged by Friday.
+and turn to the next task. The pass-disabling task still required some more changes from code reviewers
+and did not pass the automated checks, so I did not get it merged by Friday.
 
 Tuesday of this week was St Patrick's Day, which was a bank holiday, and many co-workers took a day off
 on Monday to extend their weekend. On Wednesday, I was surprised by how busy the office was and how
@@ -253,9 +251,9 @@ When the last pass-disabling ticket was being merged, some merge conflicts happe
 merge to fail. I had to find out which parts caused the errors and fix them.
 
 Meanwhile, I implemented the code for detecting the outdated passes. It would calculate the hash of the
-compiled model before and after each pass and compare these to see if there had been any change. Then
-the results would be written into a log file. I also added a compiler option that allowed enabling this
-analysis and specifying the log file path.
+compiled model before and after each pass, compare these to see if there had been any change and write
+the results into a log file. I added a compiler option that allowed enabling this analysis and specifying
+the log file path.
 
 == 30 March to 3 April
 
@@ -295,7 +293,7 @@ The first ticket pertaining to this problem was adding support for repeating blo
 for serialising ELF files (represented as IR) into binary data. Previously, the pass would crash if its
 argument was a repeating block, and my goal was to have it generate the correct output instead.
 
-My mentor had a working version of that pass in another branch, which, however, also contained other
+My mentor had a working version of that pass in another branch, which, however, contained unrelated
 changes and was not considered "pretty". Nevertheless, I could compile a sample model (with repeating
 blocks) in that branch and dump the IR before and after the pass. This way, I obtained the reference
 input and output for the pass, from which I created a test. Now I only had to modify the pass to pass
@@ -307,12 +305,12 @@ I made the changes required to get the pass working correctly. My mentor also to
 tests for the pass because they defined a lot of attributes which were not relevant for testing the
 pass. After that, my pull request got merged and the ticket was closed.
 
-My manager asked me about my outdated pass detection tool, so I informed him that I still hadn't managed
-to get the list of testing models from the CI. He scheduled an online call with me and one person
+My manager asked me about my outdated pass detection tool, so I informed him that I still hadn't
+received the list of the CI testing models. He scheduled an online call with me and one person
 responsible for the CI, who explained to me how to connect to our AWS S3 bucket and which models to
 download from it. However, that required me to first ask for permissions to access the bucket.
 
-There was also one simple ticket, which required changing the default settings for repeated-block
+There was one simple ticket, which required changing the default settings for repeated-block
 compilation. The change was passing weights as arguments to repeated blocks, rather than embedding them
 as constants inside the block. The original behaviour produced incorrect programs when repetitions used
 different weights, because the weights from the first repetition were embedded in the block. In this
@@ -326,9 +324,9 @@ times faster.
 
 == 27 April to 1 May
 
-I got both tickets from last week merged into the upstream. Then I finally tested my outdated pass
-detection tool on around 500 models for the Intel Panther Lake architecture. When I got the results, I
-couldn't believe my eyes. I sent my results to my mentor, who posted them in a Microsoft Teams group
+I got both tickets from last week accepted into the main repository. Then I finally tested my outdated
+pass detection tool on around 500 models for the Intel Panther Lake architecture. When I got the results,
+I couldn't believe my eyes. I sent my results to my mentor, who posted them in a Microsoft Teams group
 chat for compiler developers, and they couldn't believe their eyes either. Surely, it was not possible
 that 92 out of 484 passes were useless?
 
@@ -339,7 +337,7 @@ intern Ayushmaan that it looked like our internship was going well.
 == 4 to 8 May
 
 This week I started working on integrating the outdated pass detection tool into the compiler and
-merging it into the upstream so that it could be run automatically in the CI.
+merging it into develop so that it could be run automatically in the CI.
 
 Besides that, I got back to repeating blocks. Our compiler has a pass for detecting repeating blocks.
 After identifying them, it extracts them into subroutines, which can be reused, to make the model
@@ -388,7 +386,7 @@ request integrating the outdated pass detection into the compiler. All I had to 
 class for monitoring pass usage so that it can be registered as an observer that is called before and
 after a pass. Then I asked for code review again.
 
-Besides that, I kept working on my task on collecting leftover NPU instructions and extracting them into
+In parallel, I kept working on my task on collecting leftover NPU instructions and extracting them into
 subroutines. As my mentor previously requested that I make my code more generic, I refactored the
 existing code for extracting repeating blocks into subroutines to simplify and generalise it. I opened
 and merged the refactoring pull request but I still had to merge the pull request that was actually
@@ -402,31 +400,31 @@ adding the new logic to collect leftover NPU instructions.
 
 I am the only intern on the Intel NPU compiler team in Leixlip. My manager does not direct the daily
 work I am doing; I work with my mentor and occasionally other senior engineers. Our team members mostly
-work from our Leixlip office in Ireland, though there is also another team in Timisoara, Romania,
-working on the compiler. For some pull requests, I need to ask some of the Romanian software engineers
-for a code review.
+work from our Leixlip office in Ireland, though there is another team in Timisoara, Romania, working
+on the compiler. For some pull requests, I need to ask some of the Romanian software engineers for
+a code review.
 
 == Communication
 
 For sharing information about specific tasks in a structured manner, our team relies on GitHub pull
-requests and JIRA tickets, which are related to a specific task. Besides that, we also hold regular
-weekly meetings on Thursdays, where we discuss progress on tasks during the past week and plans for the
+requests and JIRA tickets, which are related to a specific task. In addition, we hold regular weekly
+meetings on Thursdays, where we discuss progress on tasks during the past week and plans for the
 next week.
 
 For instant communication, we rely on Microsoft Teams. Given that most employees come to the office on
-some workdays, it is also often possible to discuss things in person.
+some workdays, it is often possible to discuss things in person.
 
 == Quality assurance
 
 Software development at the Intel NPU compiler team is very rigorous. There are multiple steps between
-writing the code and releasing the product, in order to verify that everything works as it should.
-Every pull request requires approval from two code reviewers and must pass the CI (continuous
-integration) checks. After that, a maintainer adds an auto-merge label to the pull request and an
-automated Jenkins job merges the changes into the upstream at an appropriate time.
+writing the code and releasing the product, to verify that everything works as it should. Every pull
+request requires approval from two code reviewers and must pass the CI (continuous integration) checks.
+After that, a maintainer adds an auto-merge label to the pull request and an automated Jenkins job
+merges the changes into the upstream at an appropriate time.
 
-This automated merging is necessary because the CI checks have to be executed again after every change
-to the upstream in order to pre-empt the possibility that two changes from two different pull requests
-interact with each other in unpredictable ways.
+This automated merging is necessary because the CI pipeline has to be executed again after every change
+to the upstream to pre-empt the possibility that two changes from two different pull requests interact
+with each other in unpredictable ways.
 
 == Project management methods
 
