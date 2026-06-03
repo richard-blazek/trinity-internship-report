@@ -166,9 +166,10 @@ some of them simply succeeded on a second or a third try.
 == 9 to 13 February 2026
 
 I managed to get another pull request merged, but the task I was working on required merging two further pull
-requests with more changes to be merged. I also received a new task to work on. And manager explained to me
-the overall design of the NPU and the compiler and arranged one-on-one meetings for me with the senior
-programmers so that each explains to me their part of the compiler and I can understand the whole architecture.
+requests with more changes to be merged. I also received a new task to work on. My manager also explained the
+overall design of the NPU and the compiler to me, and arranged one-on-one meetings for me with the senior
+programmers so that each of them could explain their part of the compiler to me and I can understand the whole
+architecture.
 
 The new task I received was refactoring the mechanism for disabling compiler passes. There were too many
 command line options for disabling various compiler passes and different conditionals scattered around the
@@ -208,7 +209,7 @@ removing all the legacy options.
 
 I completed the first story for the pass disabling epic, created a pull request and had two reviewers
 approve and merge it. I also created one more pull request for my previous story ticket (clamp fusing)
-because some old code was now obsolete and had to be removed. Hopefully it’s the last PR for this ticket,
+because some old code was now obsolete and had to be removed. Hopefully it's the last PR for this ticket,
 so that I can be done with this ticket soon.
 
 == 9 to 13 March
@@ -250,7 +251,7 @@ analysis and specifying the log file path.
 To test my outdated pass detection tool, I needed to download the testing models, compile them with my
 analysis enabled and then collect the logs. For this, I used a Python helper that the team was already
 using for testing. I modified the helper to work for this task and started downloading and compiling all
-models that were stored in our cloud. There were around 11,000 models so this process took a long time
+models that were stored in our cloud. There were around 11,000 models, so this process took a long time
 and I had to keep it running overnight.
 
 The next day, my mentor asked me about it and I explained that I need to wait for the 11,000 models to
@@ -266,7 +267,7 @@ bother asking him and simply ran the analysis on all models instead, it would ha
 now. In the meanwhile, I wrote documentation for the new pass disabling mechanism and merged it into
 the repository.
 
-On Thursday, my manager asked me how is my internship going and whether I would consider working at
+On Thursday, my manager asked me how my internship was going and whether I would consider working at
 Intel after graduation. I replied that I think my internship is going well and I would be happy to
 work there.
 
@@ -298,15 +299,16 @@ the pass. After that, my pull request got merged and ticket closed.
 
 My manager asked me about my outdated pass detection tool, so I informed him that I still haven't
 managed to get the list of testing models from the CI. He scheduled an online call with me and one
-person responsible for the CI who explained me how to connect to our AWS S3 bucket and which models
-to download from here. However, that required me to first ask for permissions to access the bucket.
+person responsible for the CI who explained to me how to connect to our AWS S3 bucket and which
+models to download from it. However, that required me to first ask for permissions to access the
+bucket.
 
 There was also one simple ticket, which required changing the default settings of the repeated
 blocks compilation. The change was passing weights as arguments to repeated blocks, rather than
 embedding them as constants inside the block. The original behaviour produced incorrect programs
 if each repetition of the blocks used different weights because the block had the weights from
 the first repetition embedded inside. In this task, I simply toggled the default value of one flag
-in the settings and then changed the tests to reflect the new behavior.
+in the settings and then changed the tests to reflect the new behaviour.
 
 Another ticket I started working on was lazy evaluation for one expensive operation that was
 slowing down our tests. Every test was evaluating that operation even though most tests didn't need
@@ -365,8 +367,8 @@ Fortunately, there is a class in MLIR for this purpose that allows registering m
 to be called before and after a pass is executed. However, this class was not memory-safe, worked with
 plain pointers and relied on its user to manage their ownership manually. Therefore, the first step was
 implementing a memory-safe wrapper around this class that manages memory automatically which I promptly
-did and my pull request was approved without any delay. Next change that was required modifying the old
-pass disabling logic from my past task to work with this new class.
+did and my pull request was approved without any delay. The next required change was modifying the old
+pass-disabling logic from my earlier task to work with this new class.
 
 == 25 May to 29 May
 
