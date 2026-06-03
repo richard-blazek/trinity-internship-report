@@ -373,7 +373,17 @@ pass-disabling logic from my earlier task to work with this new class.
 
 == 25 to 29 May
 
-== 2 to 5 June
+I modified the pass-disabling logic to work with the new class I created last week. I created the pull
+request, waited for it to be approved and merged and then I finally went back to my original pull request
+integrating the outdated pass detection into the compiler. All I had to do was adapting my class for
+monitoring pass usage so that it can be registered as an observer that is called before and after a pass.
+Then I asked for code review again.
+
+Besides that, I kept working on my task on collecting leftover NPU instructions and extracting them into
+subroutines. As my mentor previously requested that I make my code more generic, I refactored the existing
+code for extracting repeating blocks into subroutines to simplify and generalise it. I opened and merged
+the refactoring pull request but I still had to merge the pull request that was actually adding the new
+logic to collect leftover NPU instructions.
 
 #pagebreak()
 
