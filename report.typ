@@ -68,18 +68,18 @@ compiler team, I need to understand this compiler architecture to know what I am
 
 == Improve code quality
 
-My first tickets during the internship are focused on refactoring tasks, such as moving optimisation
+My first assignments during the internship are focused on refactoring, such as moving optimisation
 logic from one pass into another and redesigning our compilation options. That will help me get
-familiar with the codebase before moving on to larger tasks.
+familiar with the codebase before moving on to larger projects.
 
-- *Specific:* I will complete my tasks related to improving code quality, including fixing any bugs
-  encountered. I will write tests to check the modified code.
-- *Measurable:* I have completed at least two refactoring tickets and had the related pull requests
-  merged into the upstream.
-- *Achievable:* These refactoring tasks are not technically difficult. If something is not entirely
-  clear, I can ask my mentor or other team members.
-- *Relevant:* Improving code quality makes maintenance easier and it helps me get familiar with the
-  codebase.
+- *Specific:* I will complete my assignments related to improving code quality, including fixing
+  any bugs encountered. I will write tests to check the modified code.
+- *Measurable:* I have completed at least two refactoring JIRA tickets and had them merged into
+  the upstream.
+- *Achievable:* These refactoring tickets are not technically difficult. If something is not
+  entirely   clear, I can ask my mentor or other team members.
+- *Relevant:* Improving code quality makes maintenance easier and it helps me get familiar with
+  the codebase.
 - *Time-bound:* By the time of the midpoint report, these tickets should be done.
 
 == Improve compiler performance
@@ -87,11 +87,11 @@ familiar with the codebase before moving on to larger tasks.
 One issue with the Intel NPU compiler is that it takes too long to compile models. The compiler team is
 working on ways to make compilation faster, preferably without sacrificing the performance of the
 compiled models. I will work on some of the related tasks, the first of which is a ticket on developing
-an analyser for detecting which compiler passes are useless and waste compilation time.
+an analyser for detecting which compiler passes are unused and waste compilation time.
 
-- *Specific:* I will complete the analyser for detecting useless compiler passes and add it to our CI to
+- *Specific:* I will complete the analyser for detecting unused compiler passes and add it to our CI to
   have it scheduled automatically. I will work on other refactoring tickets my mentor assigns to me.
-- *Measurable:* I have developed the analysis tool for detecting outdated compiler passes. Furthermore,
+- *Measurable:* I have developed the analysis tool for detecting unused compiler passes. Furthermore,
   I have merged a performance improvement pull request resulting in a quantifiable percentage reduction
   in the compilation time for the testing models.
 - *Achievable:* Earlier tasks give me an understanding of the compiler. After completing them, I should
@@ -108,41 +108,42 @@ an analyser for detecting which compiler passes are useless and waste compilatio
 
 == 12 to 16 January
 
-On Monday, all of us interns spent the day attending all sorts of orientation sessions. The instructors
+On Monday, all of us interns spent the day attending various orientation sessions. The instructors
 presented on health, safety, company policies and intellectual property. For the rest of the week, we
-were occupied by onboarding tasks such as obtaining the Intel employee badge, meeting my manager and
+were occupied with onboarding tasks such as obtaining the Intel employee badge, meeting my manager and
 team colleagues, and setting up my laptop and virtual machine. Before I could start working on the code,
-I had to request several permissions in the information system and wait to receive them.
+I was required to request several permissions in our access control system and wait to receive them.
 
-By Friday, I had finished all my onboarding tasks and started working on my first real task. It was a
-simple JIRA ticket assigned to me by my mentor, which only required deleting one old unused class,
-submitting a pull request and getting it successfully merged into develop (the main branch in our
-repository). I opened my first pull request and finished my first week at Intel.
+By Friday, I had finished my onboarding and started my first assignment. It was a simple JIRA ticket
+assigned to me by my mentor, which only required deleting one old unused class, submitting a pull
+request and getting it merged into develop (the main branch in our repository). I opened my first
+pull request and finished my first week at Intel.
 
 == 19 to 23 January
 
 I found out that the pull request I had opened was not yet ready, and that more steps were required
-between writing the code and integrating it upstream. I had to learn how to run CI (continuous
+between writing the code and integrating it upstream. I needed to learn how to run CI (continuous
 integration) tests to verify that my code could be safely merged and how to use rebasing to keep
 the Git history clean. I had to ask my mentor and another colleague to review and approve my changes.
-By the end of the week, my first task was done, and my changes were ready to be automatically merged.
+By the end of the week, my first ticket was done, and my changes were ready to be automatically
+merged.
 
-Then my mentor explained to me what my second task was going to be about. The second task involved
-refactoring the clamp-fusing logic in the NPU compiler. Clamp fusing means merging the clamping
-operation with the previous operation to improve the performance of the generated code. My job was to
-move this logic from a lower level of the compiler to a more abstract layer.
+Then my mentor described my second task which involved refactoring the clamp-fusing logic in the NPU
+compiler. Clamp fusing means merging the clamping operation with the previous operation to improve
+the performance of the generated code. My job was to move this logic from a lower level of the
+compiler to a more abstract layer.
 
 After work on Thursday, we had dinner with my colleagues from the compiler team, including some
 visiting from Romania.
 
 == 26 to 30 January
 
-I started working on the task I was assigned last week. When I ran the tests, I encountered an issue
-with old clamp-fusing tests that suddenly stopped working. I did not understand the problem, so I
-reverted my changes and tried to reimplement the logic again. This time, I was very careful not to
-touch the existing code that the old tests covered, just adding my new code as a parallel
-implementation. As a result, I ended up with two parallel implementations of clamp fusing, the original
-one and my new one.
+I began the task I was assigned last week. When I ran the tests, I encountered an issue with old
+clamp-fusing tests that suddenly stopped working. I did not understand the problem, so I reverted
+my changes and tried to reimplement the logic again. This time, I was very careful not to touch
+the existing code that the old tests covered, just adding my new code as a parallel implementation.
+As a result, I ended up with two parallel implementations of clamp fusing, the original one and my
+new one.
 
 To write the tests for my implementation, I looked at the old clamp-fusing tests. There I noticed that
 some of the test cases did not make any sense, yet the tests always passed. I asked my mentor about
@@ -152,15 +153,15 @@ Apparently, someone broke the code and decided to change the failing tests inste
 This episode cost me two days, but it taught me why we ought to do test-driven development instead of
 retrofitting tests to existing code.
 
-On Friday, I submitted the pull requests for my ticket and started the CI pipeline.
+On Friday, I opened the pull requests for my ticket and started the CI pipeline.
 
 == 2 to 6 February
 
 Over the weekend, the CI finished, and some of the checks failed. I spent the week trying to fix the
 issues, which progressed slowly because running the full pipeline took around 24 hours to run, depending
-on how many other checks were in the queue. Therefore, any time I tried to fix something, I had to wait
-an entire day to see if the error was solved. Also, my mentor was away this week, so I was not always
-sure what to do.
+on how many other checks were in the queue. Therefore, any time I tried to fix something, it took an
+entire day to see if the error was solved. Also, my mentor was away this week, so I was not always sure
+what to do.
 
 I resolved some of the errors which were caused by the bugs in my code. However, some tests in the CI
 behaved non-deterministically — even if there was no issue in the code, they failed with some non-zero
@@ -169,30 +170,30 @@ of them simply succeeded on a second or a third try.
 
 == 9 to 13 February
 
-I got another pull request successfully merged, but the task I was working on required merging two further
-pull requests with more changes. On top of that, I received a new task to work on. My manager gave me an
-overview of the design of the NPU and the compiler, and arranged one-on-one meetings with the senior
-programmers, so that each could explain their part and I could understand the whole architecture.
+Another of my pull requests was merged, but my task required merging two more pull requests. On top
+of that, I received a new task to work on, refactoring the mechanism for disabling compiler passes.
+The compiler had too many command-line options for disabling various compiler passes and different
+conditionals scattered around the codebase, each responsible for checking one option. My job was to
+replace this complexity with one option with the list of disabled passes and one class responsible for
+executing passes, which checks whether a pass should be disabled before running it.
 
-The new task I received was refactoring the mechanism for disabling compiler passes. There were too many
-command-line options for disabling various compiler passes and different conditionals scattered around
-the codebase, each responsible for checking one option. My job was to replace all that with one option
-with the list of all disabled passes and one class responsible for executing passes, which checks whether
-a pass should be disabled before running it.
+My manager gave me an overview of the design of the Intel NPU (Neural Processing Unit) and the
+compiler, and arranged one-on-one meetings with the senior programmers, so that each could introduce
+me to their part and I could understand the whole architecture.
 
 == 16 to 20 February
 
-I had two individual meetings with senior programmers explaining the compiler structure to me. The first
-one was describing the lower layers of the compiler and some optimisation techniques she was
-implementing. The second one (my mentor) explained to me the more abstract layers of the compiler and
-the design choices.
+I attended two individual meetings with senior programmers explaining the compiler structure to me. The
+first one was describing the lower layers of the compiler and some optimisation techniques she was
+implementing. The second one (my mentor) walked me through the more abstract layers of the compiler and
+described the design choices.
 
 I succeeded in getting a second pull request from my first task merged, and I was simultaneously working
-on my second task (because I had time waiting for CI checks on the first task). I created the command-line
-option and the class with a unit test. Then I started the excruciating process of crawling through the
-codebase in search of options to remove. Did I mention the options were scattered all around? Another
-issue was that it was not even clear which options should be removed and which ones were actually
-necessary, and the program would break without them.
+on my second task (because I was free while waiting for CI checks on the first task). I created the
+command-line option and the class with a unit test. Then I started the excruciating process of crawling
+through the codebase in search of options to remove. Did I mention the options were scattered all
+around? Another issue was that it was not even clear which options should be removed and which ones
+were actually necessary, and the program would break without them.
 
 == 23 to 27 February
 
@@ -200,9 +201,9 @@ Another senior programmer explained his part of the compiler to me, the schedule
 
 I discussed my second ticket (compiler pass disabling) with my mentor and another programmer. We agreed
 I should split the ticket into three smaller pull requests rather than implementing it all at once,
-so that they could review each pull request. I found out that there was a difference between an epic
-and a story in Scrum. The pass-disabling ticket was an epic, but each pull request had to be linked to
-a story, so I created three JIRA stories for the three pull requests I had to make.
+so that they could review each pull request. I learnt the difference between an epic and a story in
+Scrum. The pass-disabling ticket was an epic, but each pull request had to be linked to a story,
+so I created three JIRA stories for the three pull requests I had to make.
 
 The first story was implementing a utility class responsible for conditional pass execution, checking if
 a pass is disabled and executing it only if it is not. The second one was adding the pass-disabling
@@ -220,22 +221,22 @@ this ticket, so that I can be done with this ticket soon.
 
 This week, I implemented the second story of the pass-disabling epic and got it merged. In order to
 finally mark this epic as closed, I needed to create one last pull request to remove the old
-pass-disabling options. I wrote a Python script that scanned the source tree and found the options
+pass-disabling options. I wrote a Python script that scanned the source tree and collected the options
 that were always enabled by default, so that I wouldn’t need to look for them manually. It found around
 fifty of them, but some of them were false positives because some of these options were not related to
 pass disabling. So I still had to check for each option if it should be removed and adjust the code
 that used the option.
 
-Of course, I figured out that I had to make another change to the code before we could close the
-clamp-fusing story ticket. Thus, I had to create yet another pull request. This story is a never-ending
+Of course, I discovered that I needed to make another change to the code before we could close the
+clamp-fusing story ticket. Thus, I created yet another pull request. This story is a never-ending
 story. On the other hand, next week I should finish both tasks and progress to something completely
 different.
 
 == 16 to 20 March
 
 At last, I merged the last pull request for the clamp-fusing ticket, so I could close the ticket in JIRA
-and turn to the next task. The pass-disabling task still required some more changes from code reviewers
-and did not pass the automated checks, so I did not get it merged by Friday.
+and turn to the next task. Pass disabling still required some more changes from code reviewers and did
+not pass the automated checks, so I did not get it merged by Friday.
 
 Tuesday of this week was St Patrick's Day, which was a bank holiday, and many co-workers took a day off
 on Monday to extend their weekend. On Wednesday, I was surprised by how busy the office was and how
@@ -250,18 +251,18 @@ which compiler passes are outdated and do not actually modify the compiled model
 When the last pass-disabling ticket was being merged, some merge conflicts happened, and they caused the
 merge to fail. I had to find out which parts caused the errors and fix them.
 
-Meanwhile, I implemented the code for detecting the outdated passes. It would calculate the hash of the
+Meanwhile, I implemented the code for detecting the unused passes. It would calculate the hash of the
 compiled model before and after each pass, compare these to see if there had been any change and write
 the results into a log file. I added a compiler option that allowed enabling this analysis and specifying
 the log file path.
 
 == 30 March to 3 April
 
-To test my outdated pass detection tool, I needed to download the testing models, compile them with my
+To test my unused pass detection tool, I needed to download the testing models, compile them with my
 analysis enabled and then collect the logs. For this, I used a Python helper that the team was already
-using for testing. I modified the helper to work for this task and started downloading and compiling all
+using for testing. I adapted the helper for my purpose and started downloading and compiling all
 models that were stored in our cloud. There were around 11,000 models, so this process took a long
-time, and I had to keep it running overnight.
+time, and I kept it running overnight.
 
 The next day, my mentor asked me about it, and I explained that I needed to wait for the 11,000 models
 to compile. Then he explained to me that we were definitely not going to wait for 11,000 models to
@@ -302,10 +303,10 @@ input and output for the pass, from which I created a test. Now I only had to mo
 == 20 to 24 April
 
 I made the changes required to get the pass working correctly. My mentor also told me to refactor the
-tests for the pass because they defined a lot of attributes which were not relevant for testing the
-pass. After that, my pull request got merged and the ticket was closed.
+tests for the pass because they defined many attributes which were not relevant for testing the pass.
+After that, my pull request got merged and the ticket was closed.
 
-My manager asked me about my outdated pass detection tool, so I informed him that I still hadn't
+My manager asked me about my unused pass detection tool, so I informed him that I still hadn't
 received the list of the CI testing models. He scheduled an online call with me and one person
 responsible for the CI, who explained to me how to connect to our AWS S3 bucket and which models to
 download from it. However, that required me to first ask for permissions to access the bucket.
@@ -313,22 +314,22 @@ download from it. However, that required me to first ask for permissions to acce
 There was one simple ticket, which required changing the default settings for repeated-block
 compilation. The change was passing weights as arguments to repeated blocks, rather than embedding them
 as constants inside the block. The original behaviour produced incorrect programs when repetitions used
-different weights, because the weights from the first repetition were embedded in the block. In this
-task, I simply toggled the default value of one flag in the settings and then changed the tests to
-reflect the new behaviour.
+different weights, because the weights from the first repetition were embedded in the block. Closing
+this story required nothing more than toggling the default value of a flag in the settings and updating
+the tests to reflect the new behaviour.
 
-Another ticket I started working on was lazy evaluation for one expensive operation that was slowing
+Another ticket I started was lazy evaluation for one expensive operation that was slowing
 down our tests. Every test was evaluating that operation even though most tests did not need its result.
 Lazy evaluation ensured we did not evaluate it unless we needed it, making our test suite run three
 times faster.
 
 == 27 April to 1 May
 
-I got both tickets from last week accepted into the main repository. Then I finally tested my outdated
-pass detection tool on around 500 models for the Intel Panther Lake architecture. When I got the results,
-I couldn't believe my eyes. I sent my results to my mentor, who posted them in a Microsoft Teams group
-chat for compiler developers, and they couldn't believe their eyes either. Surely, it was not possible
-that 92 out of 484 passes were useless?
+Both of my pull requests from last week were accepted into the main repository. Then I finally tested
+my unused pass detection tool on around 500 models for the Intel Panther Lake architecture. When I
+saw the results, I couldn't believe my eyes. I sent my results to my mentor, who posted them in a
+Microsoft Teams group chat for compiler developers, and they couldn't believe their eyes either.
+Surely, it was not possible that 92 out of 484 passes were useless?
 
 Having such groundbreaking results at least gave me something to talk about during the internship
 presentation for our Trinity supervisor on Friday of this week. Our supervisor told me and my fellow
@@ -336,17 +337,17 @@ intern Ayushmaan that it looked like our internship was going well.
 
 == 4 to 8 May
 
-This week I started working on integrating the outdated pass detection tool into the compiler and
-merging it into develop so that it could be run automatically in the CI.
+This week I began integrating the unused pass detection tool into the compiler and merging it into
+develop so that it could be run automatically in the CI.
 
-Besides that, I got back to repeating blocks. Our compiler has a pass for detecting repeating blocks.
+Besides that, I returned to repeating blocks. Our compiler has a pass for detecting repeating blocks.
 After identifying them, it extracts them into subroutines, which can be reused, to make the model
 smaller and faster to compile. The result is a main program which runs on the CPU and is responsible
 for calling the subroutines on the NPU.
 
 The problem is that the CPU should only call the subroutines, and not execute NPU instructions. Because
 of that, the compiler should not leave any NPU instructions in the main program; it should extract them
-all into subroutines. The pass used to extract only repeating blocks, so my task was to add extra code
+all into subroutines. The pass used to extract only repeating blocks, so my job was to add extra code
 to find leftover NPU instructions and put them into separate subroutines.
 
 == 11 to 15 May
@@ -357,36 +358,36 @@ created subroutines for them so that there were no NPU-related operations left i
 mentor told me that we should make the code more generic by moving this new code into a separate class
 before we closed this task.
 
-I implemented the integration of the outdated pass detection tool into the compiler. I ran the analysis
-manually in the CI to get results for more models than the 500 I had used for testing before, and for
+I implemented the integration of the unused pass detection tool and ran the analysis manually
+in the CI to get results for more models than the 500 I had used for testing before, and for
 other architectures than just Panther Lake. Still, the result was that 62 passes were never used for
 any of these cases, and 180 passes (about a third) were used less than one percent of the time.
 
 == 18 to 22 May
 
-I wanted to merge my pull request that integrated the outdated pass detection into the compiler.
-However, one of the senior programmers doing code review said it conflicted with a task another
-programmer was working on. We scheduled a call to figure it out. The issue was that there was an MLIR
-instrumentation to set a callback that is run whenever a pass is executed, which both I and the other
-programmer used. Since there could only be one such callback, we couldn't both merge our pull requests
-without conflict.
+I wanted to merge my pull request to integrate the unused pass detection. However, one of the
+senior programmers doing code review said it conflicted with another programmer's work.
+We scheduled a call to figure it out. The issue was that there was an MLIR instrumentation
+to set a callback that is run whenever a pass is executed, which both I and the other programmer
+used. Since there could only be one such callback, we couldn't both merge our pull requests without
+conflict.
 
 Fortunately, there was a class in MLIR for this purpose that allowed registering multiple observers to
 be called before and after a pass is executed. However, this class was not memory-safe, worked with
-plain pointers and relied on its user to manage memory ownership manually. Therefore, the first step
-was implementing a memory-safe wrapper around this class that manages memory automatically, which I
-promptly did, and my pull request was approved without any delay. The next required change was
-modifying the old pass-disabling logic from my earlier task to work with this new class.
+plain pointers and relied on its user to keep track of object lifecycles. Therefore, the first step
+was implementing a wrapper using RAII to manage memory automatically, which I promptly did, and my
+pull request was approved without any delay. The next required change was modifying the old
+pass-disabling logic I implemented earlier to work with this new class.
 
 == 25 to 29 May
 
 I modified the pass-disabling logic to work with the new class I created last week. I created the pull
 request, waited for it to be approved and merged and then I finally went back to my original pull
-request integrating the outdated pass detection into the compiler. All I had to do was adapting my
+request integrating the unused pass detection into the compiler. All I needed to do was adapting my
 class for monitoring pass usage so that it can be registered as an observer that is called before and
 after a pass. Then I asked for code review again.
 
-In parallel, I kept working on my task on collecting leftover NPU instructions and extracting them into
+In parallel, I kept working on collecting leftover NPU instructions and extracting them into
 subroutines. As my mentor previously requested that I make my code more generic, I refactored the
 existing code for extracting repeating blocks into subroutines to simplify and generalise it. I opened
 and merged the refactoring pull request but I still had to merge the pull request that was actually
