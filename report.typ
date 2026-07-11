@@ -394,15 +394,64 @@ adding the new logic to collect leftover NPU instructions.
 
 == 1 to 5 June
 
+In the code review on my unused pass detection PR, I got two approving reviews, meaning I could have
+it merged upstream into the compiler. Likewise, my pull request extracting leftover NPU instructions into
+subroutines was approved and merged.
+
+Next issue I was asked to investigate was one model with repeated blocks crashing during compilation.
+I was debugging the issue but every time I fixed the crash in one pass, the compilation would crash
+in a later pass. Eventually, I had to deal with another tasks, not having resolved this problem.
+
 == 8 to 12 June
+
+This week I started working on a new task which was implementing a pass for extracting constant
+transformations. It would collect operations which performed transformations of constant model weights
+and apply these transformations on those weights at compile time. The goal was that these computations
+would not have to run during model inference time, improving the performance at inference time.
 
 == 15 to 19 June
 
+I had a call with my mentor where we discussed the last week's ticket. We discussed how the pass should
+decide certain edge case scenarios and I defined some tests to describe the behaviour for the pass.
+
+Independently, I decided to try deleting one of the passes that our analysis previously deemed unused
+and open a pull request with that change. The pull request with pass deletion got two approving reviews
+and was subsequently merged. Thus, my unused pass detection was slowly but surely starting to have some
+impact.
+
 == 22 to 26 June
+
+My manager asked me to delete multiple unused passes in bulk (say 20) so that we can see if there are
+any errors reported by the CI, or if it is perfectly all right to start eliminating passes en masse.
+
+I also opened a pull request with the pass for extracting constant transformations. From Thursday,
+I was away on a family vacation.
 
 == 29 June to 3 July
 
+On Monday and Tuesday, I was still away, coming back on Wednesday. I had a meeting with my mentor and
+my manager, both of which agreed that I was doing good job and they would like to hire me at Intel after
+graduation.
+
+I made some further changes to the pass for extracting constant transformations and asked for code review.
+The other pull request, which deleted multiple passes, failed because some of the passes were in fact
+necessary on some platforms. The problem was that I previously had not run the analysis on all platforms,
+so some of the unused passes were in fact used on some platforms I did not test.
+
 == 6 to 8 July
+
+I was finishing this week, because I was taking days off for the next week and for the Thursday and Friday
+of this week. Therefore, I had to make my work-in-progress ready for my mentor to take over.
+
+I did not make further progress to the pass for extracting constant transformations, as that was not
+a priority and I only had last three days. I fixed one error that previously caused the compilation of one
+model with repeating blocks to crash and submitted a PR; the compilation would still crash but at a later
+stage which was considered an improvement.
+
+For the pass usage analysis, my mentor ran it in the CI for all models on all platforms, so I had to write
+a Python script to extract the results from the CI output. This meant that by the end of this week, they
+could complete the report with all the data and start deleting the passes. I hope that by the time I return
+to Intel next year, these passes will be gone.
 
 #pagebreak()
 
