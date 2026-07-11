@@ -40,9 +40,9 @@ following them so that I can be useful as a member of the team.
 - *Specific:* I follow our coding standards and formatting guidelines. I can open pull requests, ask for
   code reviews, and maintainers merge my changes into the upstream. I know how to execute tests and
   write my own tests to check that my code functions as intended. I track my progress on tasks using
-  JIRA tickets.
+  Jira tickets.
 - *Measurable:* I have had at least two pull requests integrated upstream. I have run CI (continuous
-  integration) checks. I have closed a JIRA ticket.
+  integration) checks. I have closed a Jira ticket.
 - *Achievable:* All the instructions are described in our documentation. If something is not clear to me,
   I can ask any of my colleagues to help me.
 - *Relevant:* I need to learn and follow the practices of the company I work at.
@@ -51,10 +51,11 @@ following them so that I can be useful as a member of the team.
 
 == Understand the Intel NPU compiler architecture
 
-The Intel NPU compiler is a multi-pass compiler built using the MLIR framework. This allows the team to
-work with different dialects of the IR (intermediate representation) to represent the model at different
-layers, as the compilation goes from a machine learning model to an ELF binary. As a new intern on the
-compiler team, I need to understand this compiler architecture to know what I am even doing.
+The Intel NPU compiler is a multi-pass compiler built using the MLIR framework. The MLIR stands for
+Multi-Level Intermediate Representation and it is a framework built on top of LLVM that allows developers
+to work with different dialects of the IR (intermediate representation) to represent the model at
+different layers, as the compilation goes from a machine learning model to an ELF binary. As a new
+intern on the compiler team, I need to understand this compiler architecture to know what I am even doing.
 
 - *Specific:* I understand the MLIR framework and the IR dialects we use in different layers of our
   compiler. I am familiar with some of the passes and optimisations in our compiler.
@@ -74,7 +75,7 @@ familiar with the codebase before moving on to larger projects.
 
 - *Specific:* I will complete my assignments related to improving code quality, including fixing
   any bugs encountered. I will write tests to check the modified code.
-- *Measurable:* I have completed at least two refactoring JIRA tickets and had them merged into
+- *Measurable:* I have completed at least two refactoring Jira tickets and had them merged into
   the upstream.
 - *Achievable:* These refactoring tickets are not technically difficult. If something is not
   entirely   clear, I can ask my mentor or other team members.
@@ -114,7 +115,7 @@ were occupied with onboarding tasks such as obtaining the Intel employee badge, 
 team colleagues, and setting up my laptop and virtual machine. Before I could start working on the code,
 I was required to request several permissions in our access control system and wait to receive them.
 
-By Friday, I had finished my onboarding and started my first assignment. It was a simple JIRA ticket
+By Friday, I had finished my onboarding and started my first assignment. It was a simple Jira ticket
 assigned to me by my mentor, which only required deleting one old unused class, submitting a pull
 request and getting it merged into develop (the main branch in our repository). I opened my first
 pull request and finished my first week at Intel.
@@ -203,7 +204,7 @@ I discussed my second ticket (compiler pass disabling) with my mentor and anothe
 I should split the ticket into three smaller pull requests rather than implementing it all at once,
 so that they could review each pull request. I learnt the difference between an epic and a story in
 Scrum. The pass-disabling ticket was an epic, but each pull request had to be linked to a story,
-so I created three JIRA stories for the three pull requests I had to make.
+so I created three Jira stories for the three pull requests I had to make.
 
 The first story was implementing a utility class responsible for conditional pass execution, checking
 whether a pass is disabled and executing it only if it is not. The second one was adding the
@@ -213,7 +214,7 @@ The last story required removing all the legacy options.
 == 2 to 6 March
 
 I completed the first story for the pass-disabling epic, created a pull request and had two reviewers
-approve and merge it. I also created one more pull request for my previous story ticket (clamp fusing)
+approve and merge it. I also created one more pull request for my previous story (clamp fusing)
 because some old code was now obsolete and had to be removed. Hopefully it is the last pull request for
 this ticket, so I can be done with it soon.
 
@@ -227,13 +228,13 @@ fifty of them, but some were false positives because they were not related to pa
 had to check, for each option, whether it should be removed, and adjust the code that used it.
 
 Of course, I discovered that I needed to make another change to the code before we could close the
-clamp-fusing story ticket. Thus, I created yet another pull request. This story is a never-ending
+clamp-fusing story. Thus, I created yet another pull request. This story is a never-ending
 story. On the other hand, next week I should finish both tasks and progress to something completely
 different.
 
 == 16 to 20 March
 
-At last, I merged the last pull request for the clamp-fusing ticket, so I could close the ticket in JIRA
+At last, I merged the last pull request for the clamp-fusing ticket, so I could close the ticket in Jira
 and turn to the next task. Pass disabling still required some more changes from code reviewers and did
 not pass the automated checks, so I did not get it merged by Friday.
 
@@ -418,7 +419,7 @@ a code review.
 == Communication
 
 For sharing information about specific tasks in a structured manner, our team relies on GitHub pull
-requests and JIRA tickets, which are related to a specific task. In addition, we hold regular weekly
+requests and Jira tickets, which are related to a specific task. In addition, we hold regular weekly
 meetings on Thursdays, where we discuss progress on tasks during the past week and plans for the
 next week.
 
@@ -440,7 +441,7 @@ with each other in unpredictable ways.
 == Project management methods
 
 The team follows the Agile and Scrum methodologies to manage the software development lifecycle. Large
-tasks are categorised as _epics_, which are then broken down into smaller _stories_. JIRA is the
+tasks are categorised as _epics_, which are then broken down into smaller _stories_. Jira is the
 primary tool used to track progress on tasks, stories and epics. This ensures that progress on tasks can
 be tracked and each pull request is linked to a specific task.
 
