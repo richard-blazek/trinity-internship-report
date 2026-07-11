@@ -21,7 +21,7 @@ Richard Blazek\
 
 #pagebreak()
 
-= SMART Goals Review
+= SMART goals review
 
 As per original plan, I first learnt their software engineering practices and the compiler
 architecture. My first tasks focused on refactoring the code, which gave me some time to
@@ -123,7 +123,7 @@ I think I could not have expected a perfect success.
 
 #pagebreak()
 
-= Reflective Diary
+= Reflective diary
 
 == 12 to 16 January
 
@@ -473,4 +473,199 @@ to Intel next year, these passes will be gone.
 
 #pagebreak()
 
-= Technology Design Report
+= Technology design report
+
+== Executive summary
+
+My internship took place in the team developing the compiler for the Intel NPU (Neural Processing
+Unit). The compiler is built on the MLIR framework and translates machine learning models through
+several layers of intermediate representation down to an ELF binary. It is a large codebase developed
+by many programmers over several years. They told me that interns at Intel do not get a dedicated
+large project to work on during internship, but instead take part in the actual daily work the compiler
+team is doing and work on various tasks that need to be done, each tracked by a Jira ticket.
+
+As a result, I usually worked on multiple problems at once at a given point in time. A full CI run
+could sometimes take an entire day and code reviews also took time. So when one task was blocked,
+I would just switch to working on another. Three most important tasks I did were the redesign of the
+pass-disabling mechanism, the pass usage analysis tool, and the exhaustive outlining of NPU
+operations. The first one was purely refactoring, not altering the desired compiler behaviour; the second
+one was tooling that was going to be used later for improving performance; the third one was a part
+of an ongoing optimization project.
+
+== Design review
+
+=== Pass-disabling mechanism
+
+==== Problem
+
+The NPU compiler has over 500 passes and developers often need to disable some during development,
+for example when debugging or optimizing the code. Previously, this was solved by ad-hoc options,
+some passes had one option for disabling them specifically, others did not and a programmer would
+have to add such option if they wanted to disable that pass. This produced dozens of options and
+conditionals scattered all around the codebase. My task was to replace this complexity with a unified
+mechanism for disabling any pass.
+
+==== Design approach
+
+The design we agreed on had two parts. First, a single command-line option holding a regex that
+specified the names of disabled passes, allowing any pass to be disabled by name. Second, a single
+utility class responsible for conditional pass execution. The utility class checks before running
+a pass whether the pass name matches the regex, and skips it if it does. All the conditionals
+would then be removed from the codebase and the legacy options would be deleted.
+
+Because the change touched many places in the codebase, my mentor told me to split it into
+three pull requests: first implementing the utility class, then adding the pass-disabling option
+and integrating the utility class into the compiler, and finally removing all the legacy options.
+
+==== Implementation
+
+I implemented the utility class together with a unit test, then added the command-line option and
+made the pass pipeline execute passes through the new class. The most exhausting part was the third
+story, removing the legacy options. There were lots of them around the codebase, so I wrote
+a Python script that crawled all the source files and collected options that were always enabled by
+default. It found around fifty results, but some of them were false positives unrelated to pass
+disabling, so I still had to inspect each one manually, decide whether it should be removed, and
+adjust the code that used it.
+
+==== Evaluation
+
+The utility class was covered by a unit test from the beginning, and every pull request had to pass
+the full CI pipeline, which compiles a large set of models and would have caught any pass that was
+accidentally disabled or enabled by my changes. The riskiest part was the removal of the legacy
+options, because some of these options were public and could break the compiler for a customer who
+needed them. So I occasionally needed to be corrected by my mentor and told to revert some of my changes.
+Finally, I wrote documentation for the new mechanism and merged it into the repository,
+which I also consider part of the evaluation, since a mechanism nobody knows how to use is not much
+better than no mechanism at all.
+
+==== Review
+
+The new mechanism centralizes pass disabling, which is easier to maintain then the old way.
+The main problem was that I did not reuse existing MLIR infrastructure for my utility class and instead
+defined it in my own way. That caused problems later (see pass usage below) when a second callback
+was needed.
+
+=== Pass usage analysis
+
+==== Problem
+
+The NPU compiler has over 500 passes and some suspected that many of them were outdated and no longer
+modified the compiled model at all. Such passes only wasted compilation time and maintenance effort.
+However, nobody knew which passes those were. So my task was building an analysis tool that
+could detect which passes never change the compiled model.
+
+==== Design approach
+
+The approach was empirical rather than static: instead of trying to prove that a pass cannot have an
+effect, the tool observes whether it has an effect in practice. It calculates a hash of the compiled
+model before and after each pass and compares the two hashes; if they are equal, the pass did not
+change the model for that compilation. The results are written into a log file, and the analysis is
+enabled by a compiler option that also specifies the log file path, so that normal compilations pay
+no cost. Running the analysis over the whole set of CI testing models on all supported platforms
+then shows which passes never (or almost never) change anything.
+
+==== Implementation
+
+For hashing the model, I used an operation fingerprint hash from the MLIR to minimize the risk
+of hash collisions. This hashing algorithm should never produce the same hash for different operations
+(except by very unlikely chance), because the hash changes if any pointers inside the operation change,
+no matter how small the change is. The downside was that if some pass changed the pointers but not the
+values (for example, making an identical copy), this function would report it as a hash change.
+
+The goal was to make the pass analysis strict and only mark a pass as useless (making no changes), if there
+are no changes for sure, even if that means missing some useless passes. After we remove all passes that
+are useless according to these strict criteria, we could try looking for false negatives as well.
+
+Integrating the tool into the compiler caused conflict with my previous pass-disabling mechanism. My
+pass usage analysis used the same callback in the MLIR framework as my pass-disabling logic, but
+the MLIR allows only one. The solution was reusing an existing MLIR class that allowed registering
+multiple observers to be called before and after each pass. However, this class was not memory-safe,
+so I first had to create a wrapper using RAII to manage memory and then modify both pass usage analysis
+and pass-disabling logic to be registered into this class, which was then registered as the one callback
+for MLIR.
+
+==== Evaluation
+
+The first quick test on around 500 models for the Panther Lake architecture gave surprisingly
+high results, that is 92 out of 484 passes never modified any model. Later, a larger test using
+more models and more platforms reported 62 passes with zero uses and about 180 passes used in less
+than one per cent of compilations.
+
+To test if these results are real, I deleted one of the reportedly
+unused passes. The CI checks all passed and the pull request was approved and merged without issues.
+A follow-up experiment, deleting around 20 passes at once, failed in the CI. The problem was that
+even the second larger test did not include all models, so some of those deleted passes were required
+for models I had not tested. After this failure, we re-ran the test on all platforms but I was finishing
+my internship by then so I did not see the final result.
+
+==== Review
+
+The main limitation of this tool is that it only tests if the pass made any change at all, not if the
+change is meaningful. If a pass for example creates a copy of some value, it can change the pointers
+and this analysis reports it as the pass being meaningful. This could be partially fixed with a different
+hash function. Worse issue is when a pass makes some minor changes that do not change the behaviour or
+performance of the compiled model, but still get reported as a change.
+
+However, I think these are areas that can be investigated later, after we remove all passes that are
+provably unused.
+
+=== Exhaustive outlining
+
+==== Problem
+
+Many machine learning models (such as LLaMA) consist of blocks of operations repeated many times.
+The compiler has a pass that detects such repeating blocks and extracts (outlines) them into
+subroutines, so that each block is compiled only once and reused, making the model smaller and the
+compilation faster. The result of this outlining is a main program that runs on the CPU and calls the
+subroutines that run on the NPU. The problem was that the pass only extracted the repeating blocks,
+so any NPU instructions that did not belong to a repeating block were left in the main program. Since
+the CPU should only call subroutines and never execute NPU instructions itself, I had to change the
+outliner to be exhaustive and leave no NPU operation in the main program.
+
+==== Design approach
+
+The approach was to extend the existing outlining pass with an additional phase. After the repeating
+blocks are extracted, the pass walks through the main function, collects the NPU instructions that
+remain, and extracts them into separate subroutines. My mentor also asked me to make the code more
+generic. Instead of adding the exhaustive outlining into the repeating blocks outliner, I should
+keep the two separate and use the same interface.
+
+==== Implementation
+
+I implemented this in two pull requests. First one contained only the refactoring of the old outliner
+for repeating blocks, removing some old features and creating one class that can receive the outlining
+algorithm as a object (the strategy pattern if I remember correctly, but we did not use the word).
+Second pull request then implemented the exhaustive outlining algorithm and enabled it by default.
+
+==== Evaluation
+
+To test this pass, we compared the IR before and after the pass against a reference. First manually and
+then I wrote the tests defining the desired behaviour of the pass and the reference output.
+
+The whole repeating blocks compilation was a work in progress, so it did not work very smoothly. One model
+kept crashing before it even reached the outliner pass. Before leaving, I fixed one error, which
+moved the crash to a later stage of the compilation, after the outliner.
+Either way, at least the outliner was not the pass that crashed, so these were probably different issues.
+
+==== Review
+
+The repeating blocks compilation is clearly not ready for deployment, which is why it is disabled by
+default and only enabled locally by the developers testing it. Therefore, it is hard to say how my
+change affects the compilation of real-world models because the real-world customers do not use it yet.
+
+At least, my change made the outliner design cleaner because now the outliner converts the main from "all operations on NPU"
+into "no operations on NPU" rather than into a mixed CPU/NPU code.
+
+== Conclusions
+
+I appreciated that interns at Intel are integrated into the regular teamwork and do projects that are
+really meant to be useful. During my internship, I got to see different parts of the compiler and
+different types of work: refactoring (pass disabling), tooling (pass usage analysis), optimization (exhaustive
+outlining) and debugging (model with repeating blocks crashing). The disadvantage was that some
+of my work was still unfinished when my internship ended, so I handed it over to my mentor before
+seeing the final results.
+
+The work I have done is a reasonably good result for a six-month internship, or at least my manger believes so.
+The pass-disabling mechanism and the exhaustive outliner are both fully completed, and the pass usage analysis
+gave the team concrete data they can use to seek and destroy legacy passes. I hope that if I return next year,
+those passes will be gone; otherwise it would be a bit disappointing.
