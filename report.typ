@@ -8,7 +8,7 @@ Student Number: 22337668\
 Degree: Master in Computer Science\
 Company Name: Intel Ireland\
 Supervisor: Gareth Young\
-29th June 2026
+11th July 2026
 
 = Declaration
 
@@ -17,25 +17,20 @@ exercise for a degree at this or any other university.
 
 Richard Blazek\
 22337668\
-29th June 2026
+11th July 2026
 
 #pagebreak()
 
-= Internship Goals
+= SMART Goals Review
 
-To make any meaningful contribution to the Intel NPU compiler, I first need to learn their software
-engineering practices and the compiler architecture, so these two goals have the highest priority. My
-first tasks will focus on refactoring the code, which gives me some time to learn how to find my way
-around the codebase. Finally, I can continue to the more technically interesting problems of improving
-compiler performance.
+As per original plan, I first learnt their software engineering practices and the compiler
+architecture. My first tasks focused on refactoring the code, which gave me some time to
+learn how to find my way around the codebase. Finally, I continued to the more technically
+interesting problems of improving compiler performance which I did not completely finish.
 
 == Learn the software engineering practices at Intel
 
-This is my first time having a full-time job at a large company. Software development at large companies
-is more structured and requires more steps between writing the code and releasing the product to the
-customers. Compared to the environment at smaller companies or universities, there are more processes
-and rules that have to be followed. I need to learn the software practices at Intel and get used to
-following them so that I can be useful as a member of the team.
+The SMART goal I set in my midterm report was as follows:
 
 - *Specific:* I follow our coding standards and formatting guidelines. I can open pull requests, ask for
   code reviews, and maintainers merge my changes into the upstream. I know how to execute tests and
@@ -49,16 +44,17 @@ following them so that I can be useful as a member of the team.
 - *Time-bound:* In the first two months of the internship, the company software engineering practices
   should become a habit.
 
+According to the evaluation criteria set above, I did achieve this goal. I would say that having a goal
+like this is unavoidable when starting a new job, even though it was not difficult to achieve because all
+I needed to do was ask my mentor when I did not know something. I think it is reasonable to start with
+one easy win.
+
 == Understand the Intel NPU compiler architecture
 
-The Intel NPU compiler is a multi-pass compiler built using the MLIR framework. The MLIR stands for
-Multi-Level Intermediate Representation and it is a framework built on top of LLVM that allows developers
-to work with different dialects of the IR (intermediate representation) to represent the model at
-different layers, as the compilation goes from a machine learning model to an ELF binary. As a new
-intern on the compiler team, I need to understand this compiler architecture to know what I am even doing.
+The SMART goal I set in my midterm report was as follows:
 
 - *Specific:* I understand the MLIR framework and the IR dialects we use in different layers of our
-  compiler. I am familiar with some of the passes and optimisations in our compiler.
+  compiler. I am familiar with some of the passes and optimizations in our compiler.
 - *Measurable:* I can explain the NPU compilation pipeline from a machine learning model down to an ELF
   binary. I can explain the different MLIR dialects used at different layers of compilation.
 - *Achievable:* My team can explain the architecture to me and we also have documentation. Besides that,
@@ -67,11 +63,17 @@ intern on the compiler team, I need to understand this compiler architecture to 
 - *Time-bound:* I should be able to understand this after the first two months, although I will likely
   keep learning new things about the NPU compiler throughout the entire internship.
 
+The evaluation criteria I set for this goal were way too vague, so it is now hard to evaluate whether I
+succeeded or failed, especially considering the "I will likely keep learning new things" caveat above.
+Nonetheless, I discussed the compiler architecture with my mentor and colleagues and worked on different
+layers of the compiler.
+
+All in all, I think that I achieved this goal, but if I were to set this goal again, I would have
+made the evaluation criteria less vague to make this judgement unambiguous.
+
 == Improve code quality
 
-My first assignments during the internship are focused on refactoring, such as moving optimisation
-logic from one pass into another and redesigning our compilation options. That will help me get
-familiar with the codebase before moving on to larger projects.
+The SMART goal I set in my midterm report was as follows:
 
 - *Specific:* I will complete my assignments related to improving code quality, including fixing
   any bugs encountered. I will write tests to check the modified code.
@@ -83,12 +85,14 @@ familiar with the codebase before moving on to larger projects.
   the codebase.
 - *Time-bound:* By the time of the midpoint report, these tickets should be done.
 
+I clearly achieved this goal, according to the evaluation criteria set above. It was not as easy as the
+first goal, but it was quite appropriate difficulty for the first half of my internship. I had to deal
+with issues such as broken existing code but these were problems I could solve with my skills and help
+of my colleagues.
+
 == Improve compiler performance
 
-One issue with the Intel NPU compiler is that it takes too long to compile models. The compiler team is
-working on ways to make compilation faster, preferably without sacrificing the performance of the
-compiled models. I will work on some of the related tasks, the first of which is a ticket on developing
-an analyser for detecting which compiler passes are unused and waste compilation time.
+The SMART goal I set in my midterm report was as follows:
 
 - *Specific:* I will complete the analyser for detecting unused compiler passes and add it to our CI to
   have it scheduled automatically. I will work on other refactoring tickets my mentor assigns to me.
@@ -102,6 +106,20 @@ an analyser for detecting which compiler passes are unused and waste compilation
   interesting technical problem for me.
 - *Time-bound:* I will start after completing my refactoring tickets. By the end of the internship, I
   will have achieved measurable improvements in compilation time.
+
+This goal was harder than I predicted and I did not fully complete it as per my evaluation criteria.
+I succeeded at the first part, I developed the analysis tool for detecting unused compiler passes;
+however I did not merge any pull requests measurably reducing compilation time.
+
+I underestimated how complex performance optimization is in the compiler. Some changes caused performance
+improvements for compilation of some models, but worsened the performance on other models. If I were to
+retrospectively revise this goal, I would have probably relaxed this requirement.
+
+== Conclusion
+
+Overall, I am quite satisfied with the goals I achieved even if I did not achieve everything. Given that
+this was my first time setting goals in such a formal way and I could not foresee all future obstacles,
+I think I could not have expected a perfect success.
 
 #pagebreak()
 
@@ -455,70 +473,4 @@ to Intel next year, these passes will be gone.
 
 #pagebreak()
 
-= Technology Management Processes
-
-== Our team
-
-I am the only intern on the Intel NPU compiler team in Leixlip. My manager does not direct the daily
-work I am doing; I work with my mentor and occasionally other senior engineers. Our team members mostly
-work from our Leixlip office in Ireland, though there is another team in Timisoara, Romania, working
-on the compiler. For some pull requests, I need to ask some of the Romanian software engineers for
-a code review.
-
-== Communication
-
-For sharing information about specific tasks in a structured manner, our team relies on GitHub pull
-requests and Jira tickets, which are related to a specific task. In addition, we hold regular weekly
-meetings on Thursdays, where we discuss progress on tasks during the past week and plans for the
-next week.
-
-For instant communication, we rely on Microsoft Teams. Given that most employees come to the office on
-some workdays, it is often possible to discuss things in person.
-
-== Quality assurance
-
-Software development at the Intel NPU compiler team is very rigorous. There are multiple steps between
-writing the code and releasing the product, to verify that everything works as it should. Every pull
-request requires approval from two code reviewers and must pass the CI (continuous integration) checks.
-After that, a maintainer adds an auto-merge label to the pull request and an automated Jenkins job
-merges the changes into the upstream at an appropriate time.
-
-This automated merging is necessary because the CI pipeline has to be executed again after every change
-to the upstream to pre-empt the possibility that two changes from two different pull requests interact
-with each other in unpredictable ways.
-
-== Project management methods
-
-The team follows the Agile and Scrum methodologies to manage the software development lifecycle. Large
-tasks are categorised as _epics_, which are then broken down into smaller _stories_. Jira is the
-primary tool used to track progress on tasks, stories and epics. This ensures that progress on tasks can
-be tracked and each pull request is linked to a specific task.
-
-== Software development tools
-
-We use several software development tools to enable our workflow:
-- Git: Git is used for version control; rebasing is preferred over merging to keep the Git log clean
-- GitHub: GitHub stores our repository online, each developer has their own fork and submits pull
-  requests to have their work merged into the upstream
-- Jenkins: Jenkins runs the CI checks and merges pull requests into the upstream
-- Automation: Python scripts and helper tools are used to automate repetitive tasks, such as downloading
-  testing models or text processing
-- Copilot: GitHub Copilot assists during development. The codebase of the compiler is too large and
-  complex for Copilot to be reliable at code generation, but it is useful for debugging and for
-  explaining the code.
-
-== Critical evaluation
-
-=== Strengths
-
-- The strict code review process ensures that code changes are independently verified by multiple
-  engineers before they are accepted.
-- The CI pipeline thoroughly tests all pull requests to catch possible errors and performance
-  regressions in the compiler.
-
-=== Weaknesses
-
-- The CI pipeline is very slow, with checks taking around 24 hours to complete, which is a significant
-  bottleneck in the development process.
-- Some of the CI checks are flaky and fail even for correct code. They have to be restarted manually to
-  pass on a second or third try, wasting developers' time.
+= Technology Design Report
